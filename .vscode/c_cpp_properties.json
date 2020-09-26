@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "PS3 SDK",
+            "includePath": [
+                "${workspaceFolder}/src/",
+                "${SCE_PS3_ROOT}/target/ppu/include",
+                "${SCE_PS3_ROOT}/target/common/include",
+                "${SCE_PS3_ROOT}/host-win32/ppu/lib/gcc/ppu-lv2/4.1.1/include"
+            ],
+            "compilerPath": "${SCE_PS3_ROOT}/host-win32/ppu/bin/ppu-lv2-gcc"
+        }
+    ],
+    "version": 4
+}

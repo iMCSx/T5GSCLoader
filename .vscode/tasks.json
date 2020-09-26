@@ -1,0 +1,74 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "windows": {
+                "command": "make clean && make -j"
+            },
+            "options": {},
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Deploy Debug",
+            "type": "shell",
+            "windows": {
+                "command": "curl -T bin/debug/${workspaceFolderBasename}.sprx --ftp-create-dirs ftp://${config:consoleIp}/dev_hdd0/tmp/SprxLoader/BLES01031/${workspaceFolderBasename}.sprx"
+            },
+            "options": {},
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "windows": {
+                "command": "make release -j"
+            },
+            "options": {},
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Deploy Release",
+            "type": "shell",
+            "windows": {
+                "command": "curl -T bin/release/${workspaceFolderBasename}.sprx --ftp-create-dirs ftp://${config:consoleIp}/dev_hdd0/tmp/SprxLoader/BLES01031/${workspaceFolderBasename}.sprx"
+            },
+            "options": {},
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "[GSC] Deploy scripts",
+            "type": "shell",
+            "windows": {
+                // Be careful with ftp commands since the commands are with root privileges.
+                // This command will only replace existing files on console.
+                "command": "find tmp/T5GSCLoader -type f -exec curl --ftp-create-dirs -T '{}' ftp://${config:consoleIp}/dev_hdd0/'\\{}' ';'"
+            },
+            "options": {},
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
