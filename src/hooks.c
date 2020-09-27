@@ -73,7 +73,7 @@ int cellSpursLFQueuePushBody_Hook(CellSpursLFQueue *lfqueue, const void *buffer,
 {
     // Hooked by replacing popd import because using CTR an instruction of the source function will overwrite toc in stack and cause crashs.
 
-    InflateData *data = (InflateData *)(buffer);
+    InflateData *data = (InflateData*)(buffer);
     int ret = cellSpursLFQueuePushBody_Trampoline(lfqueue, buffer, isBlocking);
     GSCLoaderRawfile *lrf = get_loader_rawfile_from_deflated_buffer(data->deflatedBuffer);
 

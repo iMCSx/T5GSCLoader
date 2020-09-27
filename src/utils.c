@@ -55,8 +55,9 @@ void hex_str_to_padded_hex_str(char *out, char *hexStr)
         out[0] = '0';
         outPtr = &out[1];
     }
-    else outPtr = out;
-    
+    else
+        outPtr = out;
+
     strcpy(outPtr, tmp);
 }
 
@@ -92,7 +93,7 @@ int hex_str_to_int32(char *hexStr, size_t hexLen)
     if (start < 0)
         start = 0;
 
-    hex_str_to_buffer((char *)(out + start), hexStr, hexLen);
+    hex_str_to_buffer((char*)(out + start), hexStr, hexLen);
 
-    return *(int *)(&out);
+    return *(int*)(&out);
 }

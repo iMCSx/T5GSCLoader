@@ -24,8 +24,8 @@ void init_offsets()
     t5ni(Scr_GetString);
 
     // Set struct offsets
-    scrVarPub = (scrVarPub_t *)(t5o(ScrVarPub));
-    scrCompilePub = (scrCompilePub_t *)(t5o(ScrCompilePub));
+    scrVarPub = (scrVarPub_t*)(t5o(ScrVarPub));
+    scrCompilePub = (scrCompilePub_t*)(t5o(ScrCompilePub));
 }
 
 int init_hooks()
@@ -130,8 +130,8 @@ bool create_assets_from_scripts(char *path)
         {
             printf(T5INFO "Creating a new asset entry for '%s'.", ent.d_name);
 
-            loader.rawFiles[assetIndex].asset.name = (char *)&loader.rawFiles[assetIndex].data.name;
-            loader.rawFiles[assetIndex].asset.buffer = (char *)&loader.rawFiles[assetIndex].data.inflatedSize;
+            loader.rawFiles[assetIndex].asset.name = (char*)&loader.rawFiles[assetIndex].data.name;
+            loader.rawFiles[assetIndex].asset.buffer = (char*)&loader.rawFiles[assetIndex].data.inflatedSize;
             loader.rawFiles[assetIndex].asset.len = 0xDEAD;
 
             set_empty_deflated_data(loader.rawFiles[assetIndex].data.buffer);
@@ -174,9 +174,9 @@ bool create_assets_from_scripts(char *path)
 int init_game()
 {
     // Current process is Black Ops MP 1.13 MP or ZM?
-    if (*(int *)(0x1002C) == 0xB5A4A0)
+    if (*(int*)(0x1002C) == 0xB5A4A0)
         isMultiplayer = true;
-    else if (*(int *)(0x1002C) == 0xA56728)
+    else if (*(int*)(0x1002C) == 0xA56728)
         isMultiplayer = false;
     else
     {

@@ -71,13 +71,13 @@ int cs_hook_create_trampoline(cs_hook_info *hookInfo)
     op[1] = 0x658C0000 + ((((int)hookInfo->source->function + 16) >> 16) & 0xFFFF);
     op[2] = 0x618C0000 + (((int)hookInfo->source->function + 16) & 0xFFFF);
     op[3] = 0x7D8903A6;
-    op[4] = *(int *)(((int)hookInfo->source->function) + 0);
-    op[5] = *(int *)(((int)hookInfo->source->function) + 4);
-    op[6] = *(int *)(((int)hookInfo->source->function) + 8);
-    op[7] = *(int *)(((int)hookInfo->source->function) + 12);
+    op[4] = *(int*)(((int)hookInfo->source->function) + 0);
+    op[5] = *(int*)(((int)hookInfo->source->function) + 4);
+    op[6] = *(int*)(((int)hookInfo->source->function) + 8);
+    op[7] = *(int*)(((int)hookInfo->source->function) + 12);
     op[8] = 0x4E800420;
 
-    hookInfo->trampoline_opd.function = (void *)&trampolines[hookInfo->index];
+    hookInfo->trampoline_opd.function = (void*)&trampolines[hookInfo->index];
     hookInfo->trampoline_opd.toc = hookInfo->source->toc;
     *hookInfo->tramp = &hookInfo->trampoline_opd;
 
@@ -94,10 +94,10 @@ int cs_hook_resolve_import_opd(cs_hook_info *hookInfo)
     if (hookInfo->type != CS_HOOK_TYPE_IMPORT)
         return -2;
 
-    hookInfo->opd_import[0] = *(int *)(((int)hookInfo->source->function) + 4);
-    hookInfo->opd_import[1] = *(int *)(((int)hookInfo->source->function) + 8);
+    hookInfo->opd_import[0] = *(int*)(((int)hookInfo->source->function) + 4);
+    hookInfo->opd_import[1] = *(int*)(((int)hookInfo->source->function) + 8);
 
-    opd32 *import_opd = *(opd32 **)(hookInfo->opd_import[0] << 16 | hookInfo->opd_import[1] & 0xFFFF);
+    opd32 *import_opd = *(opd32**)(hookInfo->opd_import[0] << 16 | hookInfo->opd_import[1] & 0xFFFF);
     hookInfo->trampoline_opd.function = import_opd->function;
     hookInfo->trampoline_opd.toc = import_opd->toc;
 
@@ -150,10 +150,10 @@ int cs_hook_disable(popd32 source)
     if (hookInfo->type == CS_HOOK_TYPE_CTR)
     {
         int op[4];
-        op[0] = *(int *)(&trampolines[hookInfo->index] + 4 * 4);
-        op[1] = *(int *)(&trampolines[hookInfo->index] + 5 * 4);
-        op[2] = *(int *)(&trampolines[hookInfo->index] + 6 * 4);
-        op[3] = *(int *)(&trampolines[hookInfo->index] + 7 * 4);
+        op[0] = *(int*)(&trampolines[hookInfo->index] + 4 * 4);
+        op[1] = *(int*)(&trampolines[hookInfo->index] + 5 * 4);
+        op[2] = *(int*)(&trampolines[hookInfo->index] + 6 * 4);
+        op[3] = *(int*)(&trampolines[hookInfo->index] + 7 * 4);
         if (cs_hook_process_write((uintptr_t)hookInfo->source->function, &op, 4 * 4) != CELL_OK)
             return -2;
     }

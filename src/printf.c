@@ -555,7 +555,7 @@ int vsnprintf(char *str, size_t size, const char *format, va_list args)
                 OUTCHAR(str, len, size, cvalue);
                 break;
             case 's':
-                strvalue = va_arg(args, char *);
+                strvalue = va_arg(args, char*);
                 fmtstr(str, &len, size, strvalue, width,
                        precision, flags);
                 break;
@@ -566,7 +566,7 @@ int vsnprintf(char *str, size_t size, const char *format, va_list args)
 				 * characters, in an implementation-defined
 				 * manner." (C99: 7.19.6.1, 8)
 				 */
-                if ((strvalue = (const char *)va_arg(args, void *)) == NULL)
+                if ((strvalue = (const char*)va_arg(args, void*)) == NULL)
                     /*
 					 * We use the glibc format.  BSD prints
 					 * "0x0", SysV "0".
@@ -591,19 +591,19 @@ int vsnprintf(char *str, size_t size, const char *format, va_list args)
                 switch (cflags)
                 {
                 case PRINT_C_CHAR:
-                    charptr = va_arg(args, signed char *);
+                    charptr = va_arg(args, signed char*);
                     *charptr = len;
                     break;
                 case PRINT_C_SHORT:
-                    shortptr = va_arg(args, short int *);
+                    shortptr = va_arg(args, short int*);
                     *shortptr = len;
                     break;
                 case PRINT_C_LONG:
-                    longptr = va_arg(args, long int *);
+                    longptr = va_arg(args, long int*);
                     *longptr = len;
                     break;
                 case PRINT_C_LLONG:
-                    llongptr = va_arg(args, LLONG *);
+                    llongptr = va_arg(args, LLONG*);
                     *llongptr = len;
                     break;
                 case PRINT_C_SIZE:
@@ -614,19 +614,19 @@ int vsnprintf(char *str, size_t size, const char *format, va_list args)
 					 * signed integer type corresponding to
 					 * size_t argument." (7.19.6.1, 7)
 					 */
-                    sizeptr = va_arg(args, SSIZE_T *);
+                    sizeptr = va_arg(args, SSIZE_T*);
                     *sizeptr = len;
                     break;
                 case PRINT_C_INTMAX:
-                    intmaxptr = va_arg(args, INTMAX_T *);
+                    intmaxptr = va_arg(args, INTMAX_T*);
                     *intmaxptr = len;
                     break;
                 case PRINT_C_PTRDIFF:
-                    ptrdiffptr = va_arg(args, PTRDIFF_T *);
+                    ptrdiffptr = va_arg(args, PTRDIFF_T*);
                     *ptrdiffptr = len;
                     break;
                 default:
-                    intptr = va_arg(args, int *);
+                    intptr = va_arg(args, int*);
                     *intptr = len;
                     break;
                 }
